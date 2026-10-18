@@ -33,9 +33,10 @@ jobs:
   publish:
     needs: build
     runs-on: ubuntu-latest
-    environment:
-      name: pypi
-      url: https://pypi.org/p/hami
+
+    # NOTE: no `environment:` block on purpose. Configure the Trusted Publisher
+    # on PyPI with Environment = "(Any)" so the OIDC token is accepted whether
+    # or not a GitHub environment is attached to this job.
 
     permissions:
       id-token: write
