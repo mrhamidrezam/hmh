@@ -359,5 +359,5 @@ def count_lines(text: str, language: Optional[str]) -> Tuple[int, int, int]:
 
 
 def known_languages() -> Tuple[str, ...]:
-    """Names of every language hami recognises, alphabetically."""
+    """Names of every language hmh recognises, alphabetically."""
     return tuple(sorted(LANGUAGES))

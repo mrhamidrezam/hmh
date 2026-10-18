@@ -1,4 +1,4 @@
-"""hami — a read-only project analyzer.
+"""hmh — a read-only project analyzer.
 
 Point it at any folder and get back a full picture of what is inside: how many
 lines, in how many languages, how big everything is — **without a single byte
@@ -6,9 +6,9 @@ ever being written, moved or modified**.
 
 ::
 
-    import hami
+    import hmh
 
-    report = hami.analyze("~/projects/myapp")
+    report = hmh.analyze("~/projects/myapp")
     print(f"{report.code_lines} code lines across {len(report.languages)} languages")
 
     for lang in report.top(5):

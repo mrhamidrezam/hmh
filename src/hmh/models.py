@@ -1,4 +1,4 @@
-"""Data structures produced by hami."""
+"""Data structures produced by hmh."""
 
 from __future__ import annotations
 
@@ -16,7 +16,7 @@ def _human_size(size: float) -> str:
 
 @dataclass(frozen=True)
 class FileStat:
-    """What hami learned about a single file. Never written back."""
+    """What hmh learned about a single file. Never written back."""
 
     path: str
     language: Optional[str]
@@ -85,7 +85,7 @@ class LanguageStats:
 
 @dataclass
 class Report:
-    """Everything hami found, ready to print, export or inspect."""
+    """Everything hmh found, ready to print, export or inspect."""
 
     root: str
     files: List[FileStat] = field(default_factory=list)

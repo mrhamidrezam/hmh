@@ -1,4 +1,4 @@
-"""Command line interface: ``hami .`` or ``hami --format json .``."""
+"""Command line interface: ``hmh .`` or ``hmh --format json .``."""
 
 from __future__ import annotations
 
@@ -17,17 +17,17 @@ SORTS = ("code", "lines", "files", "bytes", "name")
 
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
-        prog="hami",
+        prog="hmh",
         description="Analyse a project without modifying a single byte:\n"
         "lines of code, languages, sizes and structure.",
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog=(
             "examples:\n"
-            "  hami .\n"
-            "  hami ~/projects/myapp --top 10 --files 5\n"
-            "  hami . --format markdown -o REPORT.md\n"
-            "  hami . --format json | jq '.totals'\n"
-            "  hami --languages\n"
+            "  hmh .\n"
+            "  hmh ~/projects/myapp --top 10 --files 5\n"
+            "  hmh . --format markdown -o REPORT.md\n"
+            "  hmh . --format json | jq '.totals'\n"
+            "  hmh --languages\n"
         ),
     )
     parser.add_argument(
@@ -42,7 +42,7 @@ def build_parser() -> argparse.ArgumentParser:
     show.add_argument("--files", type=int, default=0, metavar="N",
                       help="also list the N largest source files")
     show.add_argument("--languages", action="store_true",
-                      help="print every language hami knows and exit")
+                      help="print every language hmh knows and exit")
 
     walk = parser.add_argument_group("scanning")
     walk.add_argument("--include-hidden", action="store_true",
@@ -58,7 +58,7 @@ def build_parser() -> argparse.ArgumentParser:
     out = parser.add_argument_group("output")
     out.add_argument("-o", "--out", metavar="FILE", help="write the report to a file")
     out.add_argument("-q", "--quiet", action="store_true", help="print nothing, only the exit code")
-    parser.add_argument("--version", action="version", version=f"hami {__version__}")
+    parser.add_argument("--version", action="version", version=f"hmh {__version__}")
     return parser
 
 

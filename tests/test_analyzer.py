@@ -2,8 +2,8 @@ from __future__ import annotations
 
 import pytest
 
-from hami import analyze, analyze_many
-from hami.models import Report
+from hmh import analyze, analyze_many
+from hmh.models import Report
 
 
 def _project(tmp_path, files: dict) -> str:
@@ -144,5 +144,5 @@ def test_never_writes_anything(tmp_path):
 
 def test_report_str_returns_table(tmp_path):
     report = analyze(_project(tmp_path, {"a.py": PY}))
-    assert "hami" in str(report)
+    assert "hmh" in str(report)
     assert "Python" in str(report)

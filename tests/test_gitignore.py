@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from hami.gitignore import GitIgnore, compile_pattern
+from hmh.gitignore import GitIgnore, compile_pattern
 
 
 def test_simple_name_matches_at_any_depth():

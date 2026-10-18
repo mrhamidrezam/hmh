@@ -2,8 +2,8 @@ from __future__ import annotations
 
 import json
 
-from hami import __version__
-from hami.cli import main
+from hmh import __version__
+from hmh.cli import main
 
 PY = "import os\n\n# note\nprint(os)\nprint(1)\n"
 
@@ -17,7 +17,7 @@ def _project(tmp_path):
 def test_default_table_output(tmp_path, capsys):
     assert main([_project(tmp_path)]) == 0
     out = capsys.readouterr().out
-    assert "hami" in out
+    assert "hmh" in out
     assert "Python" in out
     assert "style.css" not in out  # summary, not a file listing
 

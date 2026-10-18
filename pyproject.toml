@@ -3,7 +3,7 @@ requires = ["hatchling>=1.24"]
 build-backend = "hatchling.build"
 
 [project]
-name = "hami"
+name = "hmh"
 dynamic = ["version"]
 description = "Read-only project analyzer: lines of code, languages, sizes and structure — without ever touching your files."
 readme = "README.md"
@@ -42,21 +42,21 @@ classifiers = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/mrhamidrezam/hami"
-Repository = "https://github.com/mrhamidrezam/hami"
-Issues = "https://github.com/mrhamidrezam/hami/issues"
+Homepage = "https://github.com/mrhamidrezam/hmh"
+Repository = "https://github.com/mrhamidrezam/hmh"
+Issues = "https://github.com/mrhamidrezam/hmh/issues"
 
 [project.scripts]
-hami = "hami.cli:main"
+hmh = "hmh.cli:main"
 
 [project.optional-dependencies]
 dev = ["pytest>=7", "build>=1.2", "twine>=5"]
 
 [tool.hatch.version]
-path = "src/hami/__init__.py"
+path = "src/hmh/__init__.py"
 
 [tool.hatch.build.targets.wheel]
-packages = ["src/hami"]
+packages = ["src/hmh"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

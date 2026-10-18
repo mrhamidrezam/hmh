@@ -1,6 +1,6 @@
 """The read-only walker that turns a directory into a :class:`Report`.
 
-**hami never writes, moves or modifies anything it inspects.** Every file is
+**hmh never writes, moves or modifies anything it inspects.** Every file is
 opened read-only, and binary blobs are only measured, never parsed.
 """
 

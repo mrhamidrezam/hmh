@@ -1,4 +1,4 @@
-"""Allow ``python -m hami`` as an alternative to the ``hami`` console script."""
+"""Allow ``python -m hmh`` as an alternative to the ``hmh`` console script."""
 
 from __future__ import annotations
 

@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from hami.languages import LANGUAGES, count_lines, detect, known_languages
+from hmh.languages import LANGUAGES, count_lines, detect, known_languages
 
 
 def test_detect_by_extension():

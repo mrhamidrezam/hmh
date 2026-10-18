@@ -1,6 +1,6 @@
-"""Minimal hami examples.
+"""Minimal hmh examples.
 
-Run after ``pip install hami``::
+Run after ``pip install hmh``::
 
     python examples/quickstart.py .
 """
@@ -9,12 +9,12 @@ from __future__ import annotations
 
 import sys
 
-import hami
+import hmh
 
 
 def main() -> None:
     target = sys.argv[1] if len(sys.argv) > 1 else "."
-    report = hami.analyze(target)
+    report = hmh.analyze(target)
 
     print(f"Project      {report.root}")
     print(f"Files        {report.total_files:,} "

@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/mrhamidrezam/hami/main/assets/banner.svg" alt="hami — read-only project analyzer" width="100%" />
+  <img src="https://raw.githubusercontent.com/mrhamidrezam/hmh/main/assets/banner.svg" alt="hmh — read-only project analyzer" width="100%" />
 </p>
 
 <p align="center">
@@ -8,27 +8,27 @@
 </p>
 
 <p align="center">
-  <a href="https://pypi.org/project/hami/"><img alt="PyPI" src="https://img.shields.io/pypi/v/hami?color=4c1&label=PyPI"></a>
-  <a href="https://pypi.org/project/hami/"><img alt="Python" src="https://img.shields.io/pypi/pyversions/hami"></a>
+  <a href="https://pypi.org/project/hmh/"><img alt="PyPI" src="https://img.shields.io/pypi/v/hmh?color=4c1&label=PyPI"></a>
+  <a href="https://pypi.org/project/hmh/"><img alt="Python" src="https://img.shields.io/pypi/pyversions/hmh"></a>
   <a href="LICENSE"><img alt="License" src="https://img.shields.io/badge/license-MIT-blue"></a>
-  <a href="https://github.com/mrhamidrezam/hami/actions/workflows/ci.yml"><img alt="CI" src="https://github.com/mrhamidrezam/hami/actions/workflows/ci.yml/badge.svg"></a>
+  <a href="https://github.com/mrhamidrezam/hmh/actions/workflows/ci.yml"><img alt="CI" src="https://github.com/mrhamidrezam/hmh/actions/workflows/ci.yml/badge.svg"></a>
 </p>
 
 ---
 
-`hami` is a **read-only project analyzer** for Python. Point it at any folder and it tells you
+`hmh` is a **read-only project analyzer** for Python. Point it at any folder and it tells you
 exactly what is inside: how many lines, in how many languages, how big everything is, and which
 files carry the most weight.
 
 It reads. It never writes.
 
 ```bash
-pip install hami
-hami .
+pip install hmh
+hmh .
 ```
 
 ```text
-hami  ·  read-only project analysis
+hmh  ·  read-only project analysis
 path      /home/you/projects/myapp
 scanned   412 files (388 source · 24 binary)
 size      5.4 MB
@@ -45,12 +45,12 @@ YAML                     22        680        188        144    1.3%
 Markdown                 23          42         60         34    0.1%
 ```
 
-## Why `hami`?
+## Why `hmh`?
 
 Most code counters are useful but invasive — they beg you to add config, install a daemon, or
-grant write access. `hami` has exactly one hard rule:
+grant write access. `hmh` has exactly one hard rule:
 
-> **`hami` NEVER modifies the source project.**
+> **`hmh` NEVER modifies the source project.**
 
 Every file is opened read-only. Nothing is deleted, moved, renamed, rewritten, or "cleaned up".
 There is no cache directory, no lock file, no temp copy, no sidecar metadata. Run it twice and the
@@ -81,7 +81,7 @@ That makes it safe to run on:
 ## Install
 
 ```bash
-pip install hami
+pip install hmh
 ```
 
 Requires Python 3.9+.
@@ -89,13 +89,13 @@ Requires Python 3.9+.
 ## Command line
 
 ```bash
-hami .                                  # summary table for the current directory
-hami ~/projects/myapp --top 10          # only the 10 biggest languages
-hami . --files 5                        # also list the 5 densest source files
-hami . --format markdown -o REPORT.md   # embeddable table for docs
-hami . --format json | jq '.totals'     # machine-readable
-hami . --format csv > stats.csv         # spreadsheet-ready
-hami --languages                        # every language hami knows
+hmh .                                  # summary table for the current directory
+hmh ~/projects/myapp --top 10          # only the 10 biggest languages
+hmh . --files 5                        # also list the 5 densest source files
+hmh . --format markdown -o REPORT.md   # embeddable table for docs
+hmh . --format json | jq '.totals'     # machine-readable
+hmh . --format csv > stats.csv         # spreadsheet-ready
+hmh --languages                        # every language hmh knows
 ```
 
 | Option | Meaning |
@@ -117,9 +117,9 @@ Exit codes: `0` success, `2` bad path or unreadable project.
 ## Python API
 
 ```python
-import hami
+import hmh
 
-report = hami.analyze("~/projects/myapp")
+report = hmh.analyze("~/projects/myapp")
 
 print(report.code_lines)        # 54120
 print(len(report.languages))    # 6
@@ -139,22 +139,22 @@ report.densest_files                              # biggest source files by code
 report.largest_files                              # biggest files by bytes
 report.comments_per_code                          # density signal
 
-hami.format_report(report, "markdown")            # same renderer the CLI uses
+hmh.format_report(report, "markdown")            # same renderer the CLI uses
 ```
 
 Analyse several projects at once:
 
 ```python
-for report in hami.analyze_many(["./api", "./web", "./infra"]):
+for report in hmh.analyze_many(["./api", "./web", "./infra"]):
     print(report.root, report.code_lines)
 ```
 
-Need the raw numbers without a walk? `hami.languages.count_lines(text, "Python")` returns
+Need the raw numbers without a walk? `hmh.languages.count_lines(text, "Python")` returns
 `(code, comment, blank)` for any string.
 
 ## How it detects languages
 
-`hami` resolves a file's language in this order:
+`hmh` resolves a file's language in this order:
 
 1. **Known filename** — `Dockerfile`, `Makefile`, `CMakeLists.txt`, `Rakefile`, `Gemfile`, `BUILD`.
 2. **Extension** — `.py`, `.tsx`, `.rs`, `.go`, `.vue`, `.tf`, `.proto`, `.nix`, …
@@ -177,7 +177,7 @@ Markdown) count every non-blank line as code, matching how `cloc` and `tokei` be
 
 ## What is skipped
 
-By default `hami` never walks into dependency and build directories, because they are reproducible
+By default `hmh` never walks into dependency and build directories, because they are reproducible
 noise rather than your project:
 
 ```text
@@ -193,19 +193,19 @@ everything. Explicit `--exclude` patterns always win.
 
 ## Comparisons
 
-| | `hami` | `cloc` | `tokei` | `scc` |
+| | `hmh` | `cloc` | `tokei` | `scc` |
 | --- | --- | --- | --- | --- |
 | Runtime deps | **none** (Python) | Perl binary | Rust binary | Go binary |
 | Read-only guarantee | **enforced + tested** | ✅ | ✅ | ✅ |
 | `.gitignore` support | built-in | ❌ | partial | partial |
 | JSON / CSV / Markdown out | **all four** | JSON | JSON | JSON |
-| Install | `pip install hami` | package manager | `cargo install` | binary download |
+| Install | `pip install hmh` | package manager | `cargo install` | binary download |
 
 ## Development
 
 ```bash
-git clone https://github.com/mrhamidrezam/hami
-cd hami
+git clone https://github.com/mrhamidrezam/hmh
+cd hmh
 python -m venv .venv && .venv\Scripts\activate      # or: source .venv/bin/activate
 pip install -e ".[dev]"
 pytest

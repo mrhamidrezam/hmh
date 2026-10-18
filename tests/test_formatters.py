@@ -4,8 +4,8 @@ import json
 
 import pytest
 
-from hami import analyze, format_report
-from hami.formatters import FORMATS, format_csv, format_json, format_markdown, format_table
+from hmh import analyze, format_report
+from hmh.formatters import FORMATS, format_csv, format_json, format_markdown, format_table
 
 PY = "import os\n\n# note\nprint(os)\nprint(1)\nprint(2)\n"
 JS = "function f() {\n  // hi\n  return 1;\n}\n"
@@ -62,7 +62,7 @@ def test_markdown_is_a_table(report):
     assert text.startswith("### Project analysis")
     assert "| Language | Files | Code |" in text
     assert "| Python |" in text
-    assert "[hami]" in text
+    assert "[hmh]" in text
 
 
 def test_all_formats_supported(report):
