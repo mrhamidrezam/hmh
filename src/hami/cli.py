@@ -94,7 +94,10 @@ def main(argv: Optional[Iterable[str]] = None) -> int:
     )
 
     if args.out:
-        Path(args.out).write_text(rendered + "\n", encoding="utf-8", newline="\n")
+        # `Path.write_text(newline=...)` needs Python 3.10+, so open explicitly
+        # to keep reports LF-identical on every platform.
+        with open(args.out, "w", encoding="utf-8", newline="\n") as handle:
+            handle.write(rendered + "\n")
         if not args.quiet:
             print(f"wrote {args.out}", file=sys.stderr)
     elif not args.quiet:
